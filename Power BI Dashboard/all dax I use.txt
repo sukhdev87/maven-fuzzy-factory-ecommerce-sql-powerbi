@@ -1,0 +1,52 @@
+all dax I use 
+
+
+Average Order Value (AOV) = DIVIDE([Gross Revenue] , [Total Orders],0)
+Conversion Rate = DIVIDE([Total Orders],[Total_Sessions],0)
+Conversion Rate = DIVIDE([Total Orders],[Total_Sessions],0)
+Gross_Profit = CALCULATE([Gross Revenue] - SUM(vw_orders_products[item_cogs]))
+item Return Rate = 
+DIVIDE(COUNT(vw_refunds[order_item_refund_id]),COUNT(vw_orders_products[order_item_id]),0)
+multi item purchased = CALCULATE(DISTINCTCOUNT(vw_orders_products[order_id]) , vw_orders_products[items_purchased] > 1)
+Multi-item Orders % = DIVIDE([multi item purchased] , [Total Orders],0)
+Net Revenue = CALCULATE([Gross Revenue]  - sum(vw_refunds[refund_amount_usd]))
+Net_Profit = CALCULATE([Gross_Profit] - sum(vw_refunds[refund_amount_usd]))
+orders return rate = DIVIDE(COUNT(vw_refunds[order_id]), [Total Orders],0)
+Organic Traffic = 
+DIVIDE(
+    CALCULATE(
+        COUNTROWS(vw_traffic),
+        vw_traffic[utm_source] = "organic"
+    ),
+    [Total_Sessions],
+    0
+)
+
+Refund Loss = CALCULATE([Gross Revenue] - [Net Revenue])
+Repeat Session = 
+DIVIDE(
+    CALCULATE(
+        COUNTROWS(vw_traffic), 
+        vw_traffic[is_repeat_session] = 1
+    ),
+    [Total_Sessions],
+    0
+)
+
+Repeat Session = 
+DIVIDE(
+    CALCULATE(
+        COUNTROWS(vw_traffic), 
+        vw_traffic[is_repeat_session] = 1
+    ),
+    [Total_Sessions],
+    0
+)
+
+total item count = COUNT(vw_orders_products[order_item_id])
+
+Total Orders = DISTINCTCOUNT(vw_orders_products[order_id])
+
+Total Refunds = COUNT(vw_refunds[order_item_refund_id])
+
+Total_Sessions = count(vw_traffic[website_session_id])
